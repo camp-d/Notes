@@ -125,6 +125,55 @@ Associated reading: chapter 1, 3, 6
 
 
 
+= Jan 24 2024
+ - Combinational logic means that logical outputs are based soley on inputs, not state or memory.
+    - closed under acyclic composition ( as long as a feedback loop is not created when composing combinational logic circuits, then the composition is still combinational)
+    - combinational, not combinatorial
+ - Sequential logic depends on memory and state.
+
+
+
+- More than one possible logic equation for a given truth table. 
+
+
+- Demorgans law: $ not (x and y) = not x or not y -> not ( x or y) = not x and not y $
+
+
+
+
+
+ - Hazards:
+    - Hazards occur when changing from one implicant to another
+    - Internal timing delays may cause undefined behavior.
+    - Prime implicants on k-map.
+    - Make circuits hazard-free by adding redundant implicants to cover transitions.
+    - Types of hazards: static, dynamic, functional
+    - Hazards also occur in sequential circuits. 
+
+
+ - Chapter 7 + appendix A+B: VHDL:
+    -
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

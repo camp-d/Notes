@@ -30,3 +30,14 @@ $ | A_1 union A_2 union ..... union A_n | = sum_(i=1)^n |A_i| - sum_(i<j) | A_i 
 if you place n+1 pieces of mail into n mailboxes, then at least one mailbox will have more than one
     piece of mail
 
+
+Generalised Pigeonhole Principle. if $ |A| > k * |B| $ then for every total function $f : A -> B$
+maps at least $k+1$ different elements to the same element of B.
+
+
+= chess problem
+- claim: for any coloring of a chessboard with different colors, we can find a rectangle so that the squares in the corners of the rectangle are all the same color. 
+
+
+= six people at a party problem
+- among any six people some have shaken hands (red edge) some have not shaken hands (blue edge)
