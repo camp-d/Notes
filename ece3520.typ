@@ -23,6 +23,22 @@
 
 
 - Cocke-Younger-Kasami (CYK) Parsing Algorithm
+- Informally, this algorithm considers every possible substring of the input string and sets $P[l,s,v]$ to be true if the 
+substring of length l starting from $s$ can be generated from the nonterminal $R_v$. once all substrings of length 1 have been considered
+then substrings of length 2 are considered. 
+
+- yak is precursor of bison
+
+
+
+
+
+
+
+
+
+
+
 
 
 
