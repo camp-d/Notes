@@ -1,3 +1,3 @@
 cd pdfs
-./typst c ../math4190.typ
-zathura ../math4190.pdf
+./typst c ../ece3270.typ
+zathura ../ece3270.pdf

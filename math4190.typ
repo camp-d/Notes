@@ -3,7 +3,6 @@
 = Math 4190 Spring 2024 - Dr. Neil Calkin
 
 = Properties of sets
-
 + Counting and Sets
 
 $ A = (A - B) union (A sect B) $
@@ -37,36 +36,30 @@ maps at least $k+1$ different elements to the same element of B.
 
 = Combinations and Permutations 
 
-
 I am a combinatorist by training, my phd is in combinatorics. I have never said the word k-comb/perm in anger except to say that it makes em angry. 
-
 Given a finite set of n values ${a_1, a_2, a_3,...,a_n}$
-
 a k-permutation of n objects is a list with or without repetition of k values from the set. 
 
 a k-combination is the unordered version of the same if repetition if not allowed it is a k-subset. 
 - if repetition is not allowed it is a k-subset
 - if repetition is allowed it is a k-multisubset
 
-
 $ vec(n, k) = n!/((n-k)!k!)$
-
-
 
 - Birthday Paradox
 - with 23 people in a room, you have a 50% chance of having 2 people with the same birthday.
 
-
-$365!/(365^k(365-k)!)$
-
-
+$365!/(365^k( 365-k )!)$
 
 who was pingala? where did he live?
 
+= Jan 29 2024
+= Binomial Coefficients, Pascal's Triangle, 
 
+- Recall: $ vec(n, k) = n!/((n-k)!k!)$
 
+$(1+x)^(n+1) = (1+x)(1+x^n) = sum_(k=0)^n 1 + x vec(n, k) x^k$
 
+-Binomial Theorem
 
-
-
-
+$(x+y)^n = sum_(k=0)^n vec(n, k)x^k$

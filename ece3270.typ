@@ -139,9 +139,6 @@ Associated reading: chapter 1, 3, 6
 - Demorgans law: $ not (x and y) = not x or not y -> not ( x or y) = not x and not y $
 
 
-
-
-
  - Hazards:
     - Hazards occur when changing from one implicant to another
     - Internal timing delays may cause undefined behavior.
@@ -155,28 +152,83 @@ Associated reading: chapter 1, 3, 6
     -
 
 
+= Jan 29 2024
+
+= VHDL syntax
 
 
+- Explicit declaration
+- CONSTANT bus_width : INTEGER := 32;
+- CONSTANT rise_delay : TIME := 20ns;
+- VARIABLE data_val : STD_LOGIC_VECTOR(7 DOWNTO 0);
+- VARIABLE sum : INTEGER RANGE 0 to 100;
+- VARIABLE done : BOOLEAN;
+- SIGNAL clock : STD_LOGIC;
+- SIGNAL addr_bus : STD_LOGIC_VECTOR (31 DOWNTO 0);
 
 
+Component Instantiation:
+- introduces a relationship to a component declaration.
+- port map maybe either named or positional. 
 
 
+named:
+
+reg5 : fill_reg
+port map ( clk => clk, 
+    rst => rst, 
+    write => write_comp,
+    read => readout,
+    data_in => dataout_comp,
+    FFout => FFOut,
+    data_out => datareg5_out);
+
+positional:
+
+port map ( clk, 
+    rst, 
+    write_comp,
+    readout,
+    dataout_comp,
+    FFout,
+    datareg5_out);
+
+    logical operators do not bind or have precedence except for the not operator.
+
+ & - Concatenation operator for strings. String is any sequence of characters.
+
+ VHDL identifier rules:
+ - letters, digits, underscores only
+ - The last character cannot be an underscore 
+ - two underscores in succession are not allowed
+ - using reserved words is not allowed.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
++ Combinational design entities use only
+  + concurent assignment statements
+  + Case or Case? statements (with "when others =>")
+  + if statements - only if all signalsa have a default assignment
+  + instantiations of other combinational modules.
++ Sequential desing entitites use only 
+  + Combinational logic
+  + Explicitly declared register (flip-flops)
++ Do not use
+  + Loops
+  + Provess except for case, casex, or if
++ Do use
+  + Signal slices e.g., a(7 downto 1) = b(6 downto 0);
++ Logic is organized into small design entities. 
+  + Leaf design entities not more than 40 lines
+  + If it could be made two design entities, if should be. 
++ Use lots of comments
+  + Comments
+  + Meaningful signal names - tempHigh, not th
+  + Meaningful module names - DaysInMonth not mod3
++ Constants
+  + All constants explicitly defined if used nore than once
++ Signals
+  + Bused (multi-bit signals) are numbered high to low
+    - e.g., bus(31 downto 0)
+  + All signals should be high-true (except primary inputs and outputs)
++ Visualize the logic your VHDL will generate.
+  + if you can't visualize it, the result will not be pretty
