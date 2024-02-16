@@ -1,7 +1,5 @@
 = Operating Systems - Dr. Drachova
 
-
-
 = Jan 25 2024
 
 = Linux compilation steps
@@ -29,5 +27,27 @@ line anything else
 - anything else is checked for macro calls, which are expanded. The result should match one of the above two forms. 
 ‘line’ directives alter the results of the and predefined macros from that point on. See Standard Predefined Macros. They do not have any effect on idea of the directory containing the current file. 
 
-
 = Linux task_struct PCB struct
+
+ - what are interrupts? Signals sent to processor/kernel
+ - what are two types? asynch vs synch
+ - PSR process s register
+ - ISR interrupt service routine
+
+ = System calls
+  - fork
+  - exec
+  - wait
+  - signal
+
+  - Shell can be parent process of other processes
+  - Systemd can be process of shell
+
+= Feb 8 2024
+
+
+  - Threads - component of a process -- smallest sequence of programmed instructions that can be managed independently by a scheduler. 
+  - threads have their own stack 
+  - process = instance of computer program that is being executed by one or more threads. 
+  - 
+

@@ -14,7 +14,6 @@ textbook: digital design using vhdl a systems approach
 room 309 room code: 327468
 
 logical and physical specification
-
 + design entry types: 
     - truth tables, waveforms, state diagrams.
     - Schematic capture.
@@ -46,7 +45,6 @@ during process of synthesis, technology mapping involves putting specific hardwa
     - timing simulators must be used in tandem with functional simulators in order
     to obtain a complete test of the design. 
 
-
     - add timing bounds to portions of circuit: best, worst, typical
     this allows for testing with all possible operation timings. 
 
@@ -59,7 +57,6 @@ during process of synthesis, technology mapping involves putting specific hardwa
         - Zero delay simulators will not detect race and hazard conditions.
         - Race condition: when two or more signals are changis simultaneously in 
             a circuit which may resuelt in an ein correct state when a condition is assumed to be stable.
-
 
         + Possible states in logic simulation:
         - 0
@@ -98,12 +95,9 @@ Associated reading: chapter 1, 3, 6
         - representation
         - noise
 
-
     - Low voltage CMOS logic:
     [Damage] -- -0.3V -- 0.0V -- 0.7V -- 1.7V -- 2.5V -- 2.8V [Damage]
     - 0.7 to 1.7 V is transition region for 2.5V CMOS logic. 
-
-
 
     - As opposed to analog systems, digital systems can:
         - Process, transport, and store info without noise distorion.
@@ -114,30 +108,22 @@ Associated reading: chapter 1, 3, 6
     - Analog systems also limited in precision
         - Accuracy is limited by the background noise.
 
-
     //#circle(radius: 10pt)
 
     - All resotring logic devices guarantee that the outputs fall into a range that is narrower than the input range
     - Larger noise margins are not necessarily better. 
 
-
     $ V_(N M H) = V_( O H) - V_(I H)$
 
-
-
-= Jan 24 2024
+= Jan 24 2024G
  - Combinational logic means that logical outputs are based soley on inputs, not state or memory.
     - closed under acyclic composition ( as long as a feedback loop is not created when composing combinational logic circuits, then the composition is still combinational)
     - combinational, not combinatorial
  - Sequential logic depends on memory and state.
 
-
-
 - More than one possible logic equation for a given truth table. 
 
-
 - Demorgans law: $ not (x and y) = not x or not y -> not ( x or y) = not x and not y $
-
 
  - Hazards:
     - Hazards occur when changing from one implicant to another
@@ -147,14 +133,9 @@ Associated reading: chapter 1, 3, 6
     - Types of hazards: static, dynamic, functional
     - Hazards also occur in sequential circuits. 
 
-
  - Chapter 7 + appendix A+B: VHDL:
-    -
 
-
-= Jan 29 2024
-
-= VHDL syntax
+= Jan 29 2024 -- VHDL syntax
 
 
 - Explicit declaration
@@ -166,14 +147,11 @@ Associated reading: chapter 1, 3, 6
 - SIGNAL clock : STD_LOGIC;
 - SIGNAL addr_bus : STD_LOGIC_VECTOR (31 DOWNTO 0);
 
-
 Component Instantiation:
 - introduces a relationship to a component declaration.
 - port map maybe either named or positional. 
 
-
 named:
-
 reg5 : fill_reg
 port map ( clk => clk, 
     rst => rst, 
@@ -232,3 +210,186 @@ port map ( clk,
   + All signals should be high-true (except primary inputs and outputs)
 + Visualize the logic your VHDL will generate.
   + if you can't visualize it, the result will not be pretty
+
+= January 31 2024
+
++ What is a VHDL process?
+  + proecesses are either awake or asleep
+  + A process normally has a sensitivity list 
+    + When a signal in that sensitivity list changes value, the process wakes up and all of the sequentil statments are "executed"
+    + for example, a process witha  clock signal in its sensitivity list will become active on changes of the clock signal
+    + At the end of the process, all outputs are assigned and the process goes back to sleep until the next time a signal changes in the sensitivity list. 
+
++ Process
+  + If no sensitivity list is given, then wait statements must be used in the process
++ Multiple statements can execute concurrently
++ The statements describing the behavior are executed sequentially
+  + This is true from a simulation standpoint
+  + From a synthesized hardware point-of-view, multiple assignments to a single signal (variable) generally implies multiplexing of the assignments to produce a signal output
++ Assignments made inside the process are not visivle outside of it. 
+
++ process
+```rust
+begin 
+  wait for 15 ns;
+  clk <= not(clk);
+end process;
+
+process(clk, rst)
+begin
+  if rst = '1'; then
+    readout <= '0';
+  elsif (clk'event and clk = '1') then
+    if(fout = '1') then
+      readout <= '1';
+    else
+      readout <= '0';
+    end if;
+  end if;
+end process;
+```
+
++ clk'event is attribute of clk
++ when writing a <= b and b <= c updates happen at end of process 
++ concurrent means nonprocedural (no in a process statement)
+  + The order in which the CSA statements appear textually has nothing to do with the order in which they execute
+  + They execute at the same time essentially
+  + Concurrency is fundamental to hardware and VHDL, think in terms of parallel signal transforms
+
+
+```rust
+with s select
+  x <= a when "00",
+    b when "01",
+    c when "10",
+    d when "11";
+
+with int_value select
+  x <= a when 0 to 3, 
+    b when 4 | 6 | 8,
+    c when 10,
+    d when others;
+    ```
+
+= Feb 2 2024
+
+```rust
+signal_name <= value_1 WHEN condition1 ELSE
+  value_2 WHEN condition2 ELSE
+  ...
+  value_n WHEN conditionN ELSE
+  value_x;
+```
+
+```rust
+x <= a when (s = "00") else
+  b when (s = "01") else
+  c when (s = "10") else
+  d;
+```
+
+= Feb 5 2024 -- Testbench examples -- end of first midterm material
+
+```rust
+// & operator is string concatenation
+//  
+  report "input = " & to_string(to_integer(unsigned(input))) &
+    " isprime = " & to_string(isprime);
+
+    // empty testbench
+    entity testbench is
+    end testbench
+
+architecture test+adder of testbench is
+  signal clk : std_logic := '0';
+  signal rst : std_logic := '0';
+
+  signal a : std_logic_vector(4 downto 0);
+  signal b : std_logic_vector(4 downto 0);
+  signal c : std_logic_vector(4 downto 0);
+
+  begin
+  dut : entity adder
+    port map( in1 => a, in2 => b, out1 => c);
+
+  //process for simulating the clock
+  //
+  process
+  begin
+    clk <= not(clk);
+    wait for 20ns;
+    end process;
+
+  //This process does the RESET
+  
+  process
+  begin
+    rst <= '1';
+    wait for 53ns;
+    rst <= '0';
+    wait until(rst'event and rst = '1');
+    //stops this process from happening again (this is an initial)
+  end process;
+```
+- VHDL supports generics
+- An aggregate is a collection of items that are gathere together to form a total quantity
+```rust
+v <= (others => '0');
+v <= ('1', '0', others => '0'); // "00000000"
+v <= (4 => '1', others => '0'); // "00010000"
+v <= ( 3 DOWNTO 0 => '0', others => '1'); // "11110000"
+
+//example generics
+
+ENTITY counters IS
+GENERIC ( WIDTH: INTEGER := 8);
+  PORT(
+    d : IN STD_LOGIC_VECTOR(WIDTH-1 DOWNTO 0);
+    clk: IN STD_LOGIC;
+    clear: IN STD_LOGIC;
+    load: IN STD_LOGIC;
+    up_down : IN STD_LOGIC;
+    qd : OUT STD_LOGIC_VECTOR(WIDTH-1 DOWNTO 0);
+  )
+```
+- For any instances of a component, use FOR GENERATE
+- This instantiates an object in each loop, which can help you create many numbers of similar components
+- no breaks, not actual loop
+
+= Feb 7 2024 -- Review Day
+
+-Multi state logic: 0, 1, U Z+, Z-
+
+Z+ input comes from floating output closer to a 1, Z- floatint output closer to a zero
+weak 1 vs weak 0
+
+Tristate buffer:
+
+VHDL overall layout
+
+entity - parts specification
+architecture - actual logic description.
+process is piece that goes into architecture.
+behavioral, structural, dataflow. process is behavioral.
+switch level simulation - hybrid electrical and event driven simulation.
+mixed mode - is another hybrid simulation but ususally has 2 seperate simulations running in tandem. 
+rise/fall time vs rise/fall delay --
+testbench
+variables are not signals, cannot be assigned to ports or sensitivity list, etc. 
+do as much as you can without variables. := assignment, <= continuous assignment
+
+
+```rust
+process(clk, rst)
+  if(rst) then q <= 0;
+  else if(clk'event = 1 and clk = 1) then q <= d;
+  end;
+end;
+```
+
+= Feb 12 2024 -- VHDL/CMOS
+
+- State machine might show up on final.
+
+-gtkwave
+-glhdl

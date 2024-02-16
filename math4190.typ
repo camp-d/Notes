@@ -53,8 +53,7 @@ $365!/(365^k( 365-k )!)$
 
 who was pingala? where did he live?
 
-= Jan 29 2024
-= Binomial Coefficients, Pascal's Triangle, 
+= Jan 29 2024 -- Binomial Coefficients, Pascal's Triangle, 
 
 - Recall: $ vec(n, k) = n!/((n-k)!k!)$
 
@@ -63,3 +62,88 @@ $(1+x)^(n+1) = (1+x)(1+x^n) = sum_(k=0)^n 1 + x vec(n, k) x^k$
 -Binomial Theorem
 
 $(x+y)^n = sum_(k=0)^n vec(n, k)x^k$
+
+
+= Jan 31 2024 -- Combinations and Permutations
+
+
+- How many way to write, with repetition, k numbers from 1 to n if 
+  + The order we write them is irreleveant
+  + The order we write them is releveant
+- We regard 122, 212, 221 as the same object. 
+
+
+- Stars and bar approach
+  - any string of k stars and n-1 bars | will convert to a strings of k 1's, 2'1, ... n's
+  - There are n+k-1 positions in which to place k stars and n-1 |'s
+
+  - There are $vec(n+k-1,k)$ ways to pick the k positions where the stars should be. 
+
+  - More formally..... Hopefully.... There are n-1 positions we need to pick to plave the |'s so
+  $vec(n+k-1, n-1)$ ways to do it
+
+  - $vec(n+k-1, k) = (n+k-1)!/(k!(n-1!)) = vec(n+k-1, n-1)$
+
+
+= N Choose K formula
+
+- $vec(n,k) = n!/((n-k!)k!)$
+
+  - How many anagrams of MAIM 
+    MAIM
+    MAMI
+    AMMI
+    MMAI
+    IMMA
+    IMAM
+    IAMM
+    MIMA
+    AMIM
+
+  - How many anagrams of MISSISSIPPI?
+   11! permutations for distinguishing between MISSISSIPPI (order matters)
+
+= Multinomial Coeficcient
+
+- numbers of  the form $ n!/(i_1 ! i_2 ! .... i_k !) $ are sometimes written $vec(n, i_1 i_2 ... i_k)$
+and are known as multinomial coeficcients. 
+
+- $(x_1 + x_2 +...... + x_n)^n = sum_(k$
+- 4^11 know the difference
+
+= Feb 5 2024
+
+- Something something, thomas jefferson cryptography.
+- william tut in something park britian who gives a shit
+
+= Proofs.... Finally
+- How do we prove things?
+- Write down careful definitions
+- keep track of axioms/given information/assumptions
+- Build sequence of deductions to arrivev at the desired result. 
+
+- quest of the peacock: good book, lots of epic virtue signaling #emoji.face.cry
+
+= Feb 12 2024 -- Proofs part 2 (3 technically)
+
+- Hypothesis: Every integer greater than 2 is divisible by a prime number.
+
+
+
+= Feb 16 2024 -- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
