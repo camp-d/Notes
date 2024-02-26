@@ -378,7 +378,6 @@ testbench
 variables are not signals, cannot be assigned to ports or sensitivity list, etc. 
 do as much as you can without variables. := assignment, <= continuous assignment
 
-
 ```rust
 process(clk, rst)
   if(rst) then q <= 0;
@@ -390,6 +389,104 @@ end;
 = Feb 12 2024 -- VHDL/CMOS
 
 - State machine might show up on final.
+- gtkwave
+- glhdl
 
--gtkwave
--glhdl
+= Feb 16 2024 -- CMOS
+
+- AOI - AND OR INVERT
+- OAI - OR AND INVERT
+
+- AND and OR cannot be implemented directly by cmos logic, NAND and NOR can be however. 
+
+- Be able to determine types of equations from diagrams and diagrams from equations.
+
+- n-type and p-type transistor back to back is tristate buffer/inverter.
+- parasitic capacitance and dynamic operation
+  - Rise/Fall time
+  - Parasitic capacitance negatively affects speed. Time to charge/discharge capacitors. 
+
+- Propogation delay is time between 50% of "swing" of one signal and the 50% swing of another.
+
+- reminder: capacitance from dielectric is gate capacitance.
+
+- Fan in vs Fan out
+ - fan in : number of inputs to a gate
+ - fan out: number of outputs to a gate 4-5 is a pretty reasonable limit for fan out.
+
+ = Feb 19 2024 -- CMOS Part 2
+
+- Common fan-out issue is driving large number of chips, as number of chips gets larger the capacitance
+ of each gate needs to be dealt with. 
+- High fan-in side effects (series):
+  - Increases output resistance or equivalently input capacitances which leades to larger propagation delay.
+  - Increases $V_(O L)$ reducing noise margin.
+- High fan-in effects (parallel):
+  - Increases load capacitances at gate output -> larger propagation delay
+  - unlikely all transistors would turn on when $V_f$ changes from high to low
+
+  - Logical Effort is a term that describes a metric to determine the delay in CMOS circuits.
+
+  - Circuit Delay can be calculated from the fanout and the logical effort of a circuit
+
+  - To compute the max delay, determine the longest path then multiply logical effort by the 
+  fan out 
+
+  - Wire Delay: in modern integrated circuits, large fraction of delay and power are due to driving
+  wires that connect components. A long chip wire has significant series resistance and parallel capacitance
+    - results in unacceptable delay and rise time
+    - increasing the drive capacity of X does not help due to the resistivity of the line
+    - using repeaters at fixed intervals can make delay linear. 
+
+  - Most energy dissipation in modern IC's comes from charging and discharging gate and wire capacitance.
+  - Energy consumption is dominated by the largest gate in the path
+
+  - Power = $ 0.5 C V^2 f alpha$
+
+  - Due to shrinking gate lengths and lower supply power has become significant. 
+  - As the threshold voltage decreases, the amount of leakage current increases exponentially.
+
+  - CMOS capacitance scales with L for constan supply voltage, energy of a module also scales w/l
+  - Energy density of a chip thus increases as 1/L
+  - Worse scaling with frequency increases -- factor of $ 1/L^2 $
+
+  - Current solution is parallelism, multiple CPUs on one chip.
+
+  = Feb 19 2024 -- Programmable Logic 
+
+  - General purpose building blocks:
+    - Decoder
+    - Encoder
+    - Multiplexer
+    - Arbiter
+    - Comparator
+    - Read-only memories
+
+  - One-Hot encoding:
+    - One bit in a binary number represents one element. Only one bit may be a 1 at any time.
+
+  = Feb 21 2024
+
+
+  - Decoder - device that converts symbols from one code to another
+  - a binary to one-hot decoder converts a symbol from binary code to a one-hot code
+  - larger decoders can be built from several smaller decoders.
+  - 6 -> 64 bit decoder requires 64 6-input AND gates (384 inputs)
+  - 6 ->64 decoder using 2->4 decoders requires: 12 2-input AND gates (24 inputs), 64 3-input AND gates (192 inputs)
+  - faster, smaller, lower power.
+
+
+  = Feb 26 2024
+
+  - 3 input look up table: 256 functions programmable for 8 bits.
+
+  - PLDs and PLAs are tied to output pins in hardware, whereas FPGAs can have any function
+  routed to any pin. 
+
+
+
+
+
+
+
+

@@ -108,7 +108,7 @@ $(x+y)^n = sum_(k=0)^n vec(n, k)x^k$
 - numbers of  the form $ n!/(i_1 ! i_2 ! .... i_k !) $ are sometimes written $vec(n, i_1 i_2 ... i_k)$
 and are known as multinomial coeficcients. 
 
-- $(x_1 + x_2 +...... + x_n)^n = sum_(k$
+- $(x_1 + x_2 +...... + x_n)^n = sum_(k)$
 - 4^11 know the difference
 
 = Feb 5 2024
@@ -128,14 +128,50 @@ and are known as multinomial coeficcients.
 
 - Hypothesis: Every integer greater than 2 is divisible by a prime number.
 
+= Feb 16 2024 -- Proof part 4
 
 
-= Feb 16 2024 -- 
+- $(1/10^5 sum_(-infinity)^infinity e^(-n^2/10^10))^2 ~= pi$
 
 
+- What about quantified statements?
+- Consider the statement $forall x, P(x) -> Q(x)$
 
 
+- Converse: $forall x, Q(x) -> P(x)$
+- inverse: $forall x, not P(x) -> not Q(x)$
+- contrapositive: $forall x not Q(x) -> not (x)$
 
+
+math club: 5:00 pm m105? floor one of M all the way down on the left.
+
+Exam: 
+ - True or False about predicate value of P(1,1), P(2,2), solve if there is a value of P
+ - Question aboout sets A = some set
+ - (i) is {3} element of A
+ - (ii) is {3} element of A
+ - Draw a venn diagram for some union or intersection of sets
+ - STATEMENT: for any horse H, if H is a palomino, h has a saddle. logic, modus ponens modus tollens
+  - be able to write down the converse, contrapositive, and negation of the statement. 
+  - Consider the integers a, b: if a > 7 and b > 10 then a+b > 18.
+    - let P = "a > 7", q = "b > 10" and r = "a+b > 18"
+    - express the statement using p, q, r.
+    - convert the statement using OR, write down the negation of a statement as an english sentence
+    - calculation using binomial theorem: coefficient or otherwise. $ x^10 $ in $(x^2-1)^8$
+    - simple answer, no expansion.
+    - an inclusion - exclusion question ( dealing with sets and intersections and things )
+    - Question about using truth tables to determine whether two statements involving p, q. r are logically equivalent. 
+    - counting questions, how many ways can you select 10 pizzas from 4 choices. 
+    - pidgeonhole principle
+    - selecting 5 students to represent the class at some presentation, anagram of mississippi
+
+
+    - Basic logical laws 
+
+
+    = Feb 26 2024
+    - low down triple dealing
+    - permutations involving dealing cards
 
 
 
