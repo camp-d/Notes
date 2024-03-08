@@ -467,14 +467,12 @@ end;
 
   = Feb 21 2024
 
-
   - Decoder - device that converts symbols from one code to another
   - a binary to one-hot decoder converts a symbol from binary code to a one-hot code
   - larger decoders can be built from several smaller decoders.
   - 6 -> 64 bit decoder requires 64 6-input AND gates (384 inputs)
   - 6 ->64 decoder using 2->4 decoders requires: 12 2-input AND gates (24 inputs), 64 3-input AND gates (192 inputs)
   - faster, smaller, lower power.
-
 
   = Feb 26 2024
 
@@ -483,10 +481,12 @@ end;
   - PLDs and PLAs are tied to output pins in hardware, whereas FPGAs can have any function
   routed to any pin. 
 
+  = Feb 28 2024
 
+  - Synchronous sequential logic
+  - State Machine Types:
+    - Moore : No outputs happen on state transitions, outputs only change with clock
+    - Mealy : same as moore, but inputs can bypass to trigger outputs, regardless of clock, asynchronous transitions/logic
 
-
-
-
-
+  = March 04 2024
 
